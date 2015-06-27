@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,22 +20,33 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 4306499762696262279L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@Column(name="USR_NOME", length=255)
+	private int id;
+	@Column(name="NOME", length=255, nullable=false)
 	private String nome;
-	@Column(name="USR_CPF", length=11, unique=true)
+	@Column(name="CPF", length=11, unique=true)
 	private String cpf;
-	@Column(name="USR_TELEFONE", length=11)
-	private String telefone;
-	@Column(name="USR_EMAIL", length=255, unique=true)
-	private String email;
-	@Column(name="USR_SENHA", length=15)
+	@Column(name="SENHA", length=15, nullable=false)
 	private String senha;
-	public long getId() {
+	@Column(name="DT_NASCIMENTO")
+	private Date dataNascimento;
+	@Column(name="STATUS", columnDefinition = "tinyint default 1")
+	private int status = 1; 
+	@Column(name="CREATED", columnDefinition = "datetime default current_timestamp")
+	private Date created;
+	@Column(name="MODIFIED", columnDefinition = "datetime default current_timestamp")
+	private Date modified;
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	public String getNome() {
 		return nome;
@@ -48,17 +60,23 @@ public class Usuario implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getTelefone() {
-		return telefone;
+	public String getSenha() {
+		return senha;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	public String getEmail() {
-		return email;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+	public void setModified() {
+		this.modified = new Date();
 	}
 	
 	
