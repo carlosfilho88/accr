@@ -1,12 +1,18 @@
 package principal;
 
-import conexao.Conexao;
+import conexao.ConnectionFactory;
+import dao.UsuarioDAO;
+import entidades.Usuario;
 
 public class Principal {
 
 	public static void main(String[] args) {
-		Conexao conn = new Conexao();
-		conn.getConexao();
+		new ConnectionFactory();
+		Usuario u = new Usuario();
+		UsuarioDAO ud = new UsuarioDAO();
+		u.setNome("Carlos");
+		u.setCpf("03451889340");
+		ud.insert(u);
 		
 	}
 

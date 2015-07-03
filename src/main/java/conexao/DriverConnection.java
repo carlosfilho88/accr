@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class LoadDriver {
+public class DriverConnection {
 	
 	private Connection connection = null;
 	private String address;
@@ -12,9 +12,9 @@ public class LoadDriver {
 	private String password;
 	private String port;
 	
-	public LoadDriver() {};
+	public DriverConnection() {};
 	
-	public LoadDriver(String address, String port, String database, String username, String password) {
+	public DriverConnection(String address, String port, String database, String username, String password) {
 		this.address = address;
 		this.port = port;
 		this.database = database;
@@ -25,7 +25,6 @@ public class LoadDriver {
 		    this.setConnection(DriverManager.getConnection(
 		    		"jdbc:mysql://"+this.getAddress()+":"+this.getPort()+"/"+this.getDatabase()+"?user="+this.getUsername()+"&password="+this.getPassword()));
 		} catch (SQLException ex) {
-		    // handle any errors
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());

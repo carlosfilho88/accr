@@ -1,2 +1,11 @@
 DROP DATABASE IF EXISTS `libsystem`;
-CREATE DATABASE IF NOT EXISTS `libsystem` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci */;
+CREATE DATABASE IF NOT EXISTS `libsystem` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+
+USE `libsystem`;
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `cpf` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

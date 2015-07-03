@@ -10,25 +10,25 @@ import java.util.Map;
 
 import util.ReadConfig;
 
-public class Conexao {
+public class ConnectionFactory {
 	
-	private Connection conexao;
+	private static Connection connection;
 	
-	public Conexao() {
+	public ConnectionFactory() {
 		
 		ReadConfig config = new ReadConfig();
 		Map<String, String> props;
-		LoadDriver loadDriver = null;
+		DriverConnection driver = null;
 		ScriptRunner scriptRunner;
 		ClassLoader classLoader = getClass().getClassLoader();
 		
 		try {
 			File file = new File(classLoader.getResource("test.sql").getFile());
 			props = config.getPropValues();
-			loadDriver = new LoadDriver(props.get("address"), props.get("port"), props.get("database"), props.get("username"), props.get("password"));
-			scriptRunner = new ScriptRunner(loadDriver.getConnection(), false, true);
+			driver = new DriverConnection(props.get("address"), props.get("port"), props.get("database"), props.get("username"), props.get("password"));
+			scriptRunner = new ScriptRunner(driver.getConnection(), false, true);
 			scriptRunner.runScript(new BufferedReader(new FileReader(file)));
-			this.setConexao(loadDriver.getConnection());
+			connection = driver.getConnection();
 			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -38,13 +38,11 @@ public class Conexao {
 		
 	}
 
-	public Connection getConexao() {
-		return conexao;
+	public static Connection getConnection() {
+		return connection;
 	}
 
-	public void setConexao(Connection conexao) {
-		this.conexao = conexao;
-	}
+
 	
 	
 	
