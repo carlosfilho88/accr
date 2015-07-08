@@ -17,12 +17,14 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField fieldUser;
+	private JTextField fieldPass;
 
 	/**
 	 * Launch the application.
@@ -71,15 +73,15 @@ public class Login extends JFrame {
 		lblPass.setBounds(10, 119, 46, 14);
 		panel.add(lblPass);
 		
-		textField = new JTextField();
-		textField.setBounds(66, 53, 167, 31);
-		panel.add(textField);
-		textField.setColumns(10);
+		fieldUser = new JTextField();
+		fieldUser.setBounds(66, 53, 167, 31);
+		panel.add(fieldUser);
+		fieldUser.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(66, 111, 167, 31);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		fieldPass = new JTextField();
+		fieldPass.setBounds(66, 111, 167, 31);
+		panel.add(fieldPass);
+		fieldPass.setColumns(10);
 		
 		JButton btnAcessar = new JButton("Acessar");
 		btnAcessar.setBackground(SystemColor.info);
@@ -87,6 +89,13 @@ public class Login extends JFrame {
 		panel.add(btnAcessar);
 		
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				fieldUser.setText(null);
+				fieldPass.setText(null);
+			}
+		});
 		btnLimpar.setBackground(SystemColor.info);
 		btnLimpar.setBounds(111, 189, 89, 23);
 		panel.add(btnLimpar);
