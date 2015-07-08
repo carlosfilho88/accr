@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -89,6 +90,11 @@ public class Login extends JFrame {
 		btnLimpar.setBackground(SystemColor.info);
 		btnLimpar.setBounds(111, 189, 89, 23);
 		panel.add(btnLimpar);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Airon\\git\\accr\\src\\main\\java\\images\\images.png"));
+		lblNewLabel.setBounds(188, 6, 55, 37);
+		panel.add(lblNewLabel);
 	}
 
 }
