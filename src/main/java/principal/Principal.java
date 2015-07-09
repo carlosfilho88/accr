@@ -13,7 +13,6 @@ public class Principal {
 		u.setNome("Carlos");
 		u.setCpf("03451889340");
 		ud.insert(u);
-		
 	}
 
 }

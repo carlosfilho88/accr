@@ -18,7 +18,7 @@ public class UsuarioDAO implements DAOInterface {
     private static Logger logger;
     private static final String CREATE_QUERY = "INSERT INTO usuarios (nome, cpf) VALUES (?,?)";
     private static final String READ_QUERY = "SELECT id, nome, cpf FROM usuarios WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE usuarios SET nome=? , cpf=? WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE usuarios SET nome=?, cpf=? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuarios WHERE id = ?";
     
     public <Usuario> int insert(Usuario usuario) {
@@ -66,7 +66,7 @@ public class UsuarioDAO implements DAOInterface {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try {
-        	conn = (Connection) ConnectionFactory.getConnection();
+            conn = (Connection) ConnectionFactory.getConnection();
             preparedStatement = (PreparedStatement) conn.prepareStatement(UPDATE_QUERY);
             preparedStatement.setString(1, ((entidades.Usuario) usuario).getNome());
             preparedStatement.setString(2, ((entidades.Usuario) usuario).getCpf());
@@ -93,7 +93,7 @@ public class UsuarioDAO implements DAOInterface {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try {
-        	conn = (Connection) ConnectionFactory.getConnection();
+            conn = (Connection) ConnectionFactory.getConnection();
             preparedStatement = (PreparedStatement) conn.prepareStatement(DELETE_QUERY);
             preparedStatement.setInt(1, ((entidades.Usuario) usuario).getId());
             return preparedStatement.executeUpdate();
