@@ -25,26 +25,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fieldAutor" linkSize="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldEdicao" linkSize="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldQtd" linkSize="1" max="32767" attributes="0"/>
-                          <Component id="fieldDescricao" linkSize="1" pref="266" max="32767" attributes="0"/>
-                          <Component id="fieldAno" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="fieldAutor" linkSize="1" max="32767" attributes="0"/>
+                      <Component id="fieldEdicao" linkSize="1" max="32767" attributes="0"/>
+                      <Component id="fieldDescricao" linkSize="1" pref="266" max="32767" attributes="0"/>
+                      <Component id="jSpinner1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jSpinner2" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSalvar" min="-2" pref="114" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
           </Group>
@@ -61,12 +59,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldQtd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldAno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -78,9 +76,9 @@
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldAutor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -113,10 +111,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="fieldDescricao">
     </Component>
-    <Component class="javax.swing.JTextField" name="fieldQtd">
-    </Component>
-    <Component class="javax.swing.JTextField" name="fieldAno">
-    </Component>
     <Component class="javax.swing.JTextField" name="fieldEdicao">
     </Component>
     <Component class="javax.swing.JTextField" name="fieldAutor">
@@ -125,6 +119,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner2">
     </Component>
   </SubComponents>
 </Form>

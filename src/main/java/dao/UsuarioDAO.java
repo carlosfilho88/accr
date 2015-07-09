@@ -13,9 +13,9 @@ import conexao.ConnectionFactory;
 import entidades.Usuario;
 
 
-public class UsuarioDAO implements DAOInterface{
+public class UsuarioDAO implements DAOInterface {
 
-	private static Logger logger;
+    private static Logger logger;
     private static final String CREATE_QUERY = "INSERT INTO usuarios (nome, cpf) VALUES (?,?)";
     private static final String READ_QUERY = "SELECT id, nome, cpf FROM usuarios WHERE id = ?";
     private static final String UPDATE_QUERY = "UPDATE usuarios SET nome=? , cpf=? WHERE id = ?";
