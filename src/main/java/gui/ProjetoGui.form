@@ -111,12 +111,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Rayckson"/>
+            <Property name="text" type="java.lang.String" value="Rayckson Araujo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Carlos Filho"/>
+            <Property name="text" type="java.lang.String" value="Carlos Bezerra Braga Filho"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">

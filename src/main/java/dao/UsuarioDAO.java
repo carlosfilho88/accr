@@ -23,11 +23,11 @@ import java.util.logging.Level;
 public class UsuarioDAO implements DAOInterface {
 
     private static Logger logger;
-    private static final String CREATE_QUERY = "INSERT INTO usuarios (perfil_id, cpf, nome, senha, data_nascimento, modified, status) VALUES (?,?,?,?,?,?,?)";
-    private static final String READ_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuarios WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE usuarios SET nome = ?, cpf = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM usuarios WHERE id = ?";
-    private static final String SELECT_ALL_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuarios";
+    private static final String CREATE_QUERY = "INSERT INTO usuario (perfil_id, cpf, nome, senha, data_nascimento, modified, status) VALUES (?,?,?,?,?,?,?)";
+    private static final String READ_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuario WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE usuario SET nome = ?, cpf = ? WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM usuario WHERE id = ?";
+    private static final String SELECT_ALL_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuario";
     
     public <Usuario> int insert(Usuario usuario) {
         Connection conn = null;
@@ -217,7 +217,7 @@ public class UsuarioDAO implements DAOInterface {
         ResultSet result = null;
         try {
             conn = (Connection) ConnectionFactory.getConnection();
-            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, created, modified, status FROM usuarios WHERE " + columnName + " = ?");
+            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, created, modified, status FROM usuario WHERE " + columnName + " = ?");
             preparedStatement.setString(1, value);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
@@ -262,7 +262,7 @@ public class UsuarioDAO implements DAOInterface {
         ResultSet result = null;
         try {
             conn = (Connection) ConnectionFactory.getConnection();
-            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuarios WHERE " + criteria);
+            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuario WHERE " + criteria);
             for (int i = 0; i < values.size(); i++) {
                 preparedStatement.setString(i+1, values.get(i));
             }

@@ -33,9 +33,9 @@ INSERT INTO `perfil` (`id`, `nome`, `status`) VALUES
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 
 
--- Dumping structure for table libsystem.usuarios
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
+-- Dumping structure for table libsystem.usuario
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `perfil_id` int(10) unsigned NOT NULL DEFAULT '1',
   `cpf` varchar(11) NOT NULL,
@@ -48,11 +48,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table libsystem.usuarios: ~0 rows (approximately)
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`, `created`, `modified`, `status`) VALUES
+-- Dumping data for table libsystem.usuario: ~0 rows (approximately)
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`, `created`, `modified`, `status`) VALUES
 	(1, 1, '03451889340', 'Carlos Filho', '123456', '1988-10-11', '2015-07-12 16:06:25', NULL, 1);
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

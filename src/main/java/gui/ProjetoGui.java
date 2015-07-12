@@ -37,15 +37,15 @@ public class ProjetoGui extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setTitle("LibSystem - Informações");
+        setTitle("LibSystem - InformaÃ§Ãµes");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("InformaÃ§Ãµes"));
 
         jLabel7.setText("Carlos Gleyson");
 
-        jLabel6.setText("Rayckson");
+        jLabel6.setText("Rayckson Araujo");
 
-        jLabel5.setText("Carlos Filho");
+        jLabel5.setText("Carlos Bezerra Braga Filho");
 
         jLabel4.setText("Airon Wellington Lima dos Santos");
 
@@ -55,10 +55,10 @@ public class ProjetoGui extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Disciplina");
 
-        jLabel2.setText("Programação Orientada a Objetos com Java");
+        jLabel2.setText("ProgramaÃ§Ã£o Orientada a Objetos com Java");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Especialização Engenharia de Software CEUT | Estácio");
+        jLabel1.setText("EspecializaÃ§Ã£o Engenharia de Software CEUT | EstÃ¡cio");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
