@@ -5,6 +5,11 @@
  */
 package gui;
 
+import conexao.ConnectionFactory;
+import dao.UsuarioDAO;
+import entidades.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import util.ValidarCpf;
 
@@ -121,7 +126,19 @@ public class Login extends javax.swing.JFrame {
         
         if (passwordField.getPassword().length > 0 && cpfField.getText().length() > 0) {
             if (vcpf.isValid(cpfField.getText())) {
-                
+                new ConnectionFactory();
+		UsuarioDAO ud = new UsuarioDAO();
+                ArrayList<String> values = new ArrayList<String>();
+                List<Usuario> result = null;
+                values.add(cpfField.getText().replaceAll("[\\.\\-]", ""));
+                values.add(new String(passwordField.getPassword()));
+		result = ud.findByCriteria("cpf = ? AND senha = ?", values);
+                if(result != null && result.size() > 0) {
+                    result.get(0).getCpf();
+                } else {
+                    JOptionPane.showOptionDialog(null, "Usuário ou senha incorretos.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+                }
+                    
             } else {
                 JOptionPane.showOptionDialog(null, "CPF inválido.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
             }
