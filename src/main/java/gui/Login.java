@@ -140,6 +140,7 @@ public class Login extends javax.swing.JFrame {
                     switch (result.get(0).getPerfil().getId()) {
                         case 1:
                             //this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                            setVisible(false);
                             new TelaAdministrador().setVisible(true);
                             break;
                         case 2:
