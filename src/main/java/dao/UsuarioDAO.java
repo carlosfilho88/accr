@@ -12,7 +12,7 @@ import com.mysql.jdbc.Statement;
 import conexao.ConnectionFactory;
 import entidades.Perfil;
 import entidades.Usuario;
-import java.text.DateFormat;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ import java.util.logging.Level;
 public class UsuarioDAO implements DAOInterface {
 
     private static Logger logger;
-    private static final String CREATE_QUERY = "INSERT INTO usuario (perfil_id, cpf, nome, senha, data_nascimento, modified, status) VALUES (?,?,?,?,?,?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO usuario (perfil_id, cpf, nome) VALUES (?,?,?)";
     private static final String READ_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuario WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE usuario SET nome = ?, cpf = ? WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE usuario SET perfil_id = ?, cpf = ?, nome = ?, senha = ?, data_nascimento = ?, modified = ?, status = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuario WHERE id = ?";
     private static final String SELECT_ALL_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuario";
     
@@ -35,10 +35,14 @@ public class UsuarioDAO implements DAOInterface {
         ResultSet result = null;
         
         try {
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             conn = (Connection) ConnectionFactory.getConnection();
+            System.out.println(conn.isClosed());
             preparedStatement = (PreparedStatement) conn.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, ((entidades.Usuario) usuario).getNome());
+            preparedStatement.setInt(1, ((entidades.Usuario) usuario).getPerfil().getId());
             preparedStatement.setString(2, ((entidades.Usuario) usuario).getCpf());
+            preparedStatement.setString(3, ((entidades.Usuario) usuario).getNome());
+            //preparedStatement.setDate(4, (Date) ((entidades.Usuario) usuario).getDataNascimento());
             preparedStatement.execute();
             result = preparedStatement.getGeneratedKeys();
  

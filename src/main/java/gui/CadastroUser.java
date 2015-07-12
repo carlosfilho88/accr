@@ -5,6 +5,14 @@
  */
 package gui;
 
+import conexao.ConnectionFactory;
+import dao.UsuarioDAO;
+import entidades.Perfil;
+import entidades.Usuario;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import util.ValidarCpf;
+
 /**
  *
  * @author Airon
@@ -30,18 +38,18 @@ public class CadastroUser extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        fieldName = new javax.swing.JTextField();
+        nome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        comboTipoUsuario = new javax.swing.JComboBox();
+        perfil = new javax.swing.JComboBox();
         salvarUsuario = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        cpf = new javax.swing.JFormattedTextField();
+        nascimento = new javax.swing.JFormattedTextField();
 
         setTitle("LibSystem");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro do usu�rio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro do usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jLabel1.setText("Nome");
 
@@ -49,19 +57,28 @@ public class CadastroUser extends javax.swing.JFrame {
 
         jLabel3.setText("Data de nascimento");
 
-        comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aluno", "Administrador" }));
+        perfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aluno", "Administrador" }));
 
         salvarUsuario.setText("Salvar");
+        salvarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Perfil");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        try {
+            nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -76,14 +93,14 @@ public class CadastroUser extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(fieldName)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nome)
+                    .addComponent(cpf, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(salvarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(106, 106, 106))
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(nascimento, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -92,18 +109,18 @@ public class CadastroUser extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(fieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(salvarUsuario)
@@ -133,6 +150,36 @@ public class CadastroUser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarUsuarioActionPerformed
+        ValidarCpf vcpf = new ValidarCpf();
+        
+        if (nome.getText().length() > 0 && cpf.getText().length() > 0 && nascimento.getText().length() > 0) {
+            if (vcpf.isValid(cpf.getText())) {
+		UsuarioDAO ud = new UsuarioDAO();
+                Usuario usuario = new Usuario();
+                Perfil p = new Perfil();
+                p.setId(perfil.getSelectedIndex()+1);
+                usuario.setCpf(cpf.getText().replaceAll("[\\.\\-]", ""));
+                usuario.setNome((nome.getText()));
+                usuario.setDataNascimento(new Date(nascimento.getText()));
+                usuario.setPerfil(p);
+		int i = ud.insert(usuario);
+                
+                if(i > 0) {
+                    JOptionPane.showOptionDialog(null, "Usuário cadastrado com sucesso.", "", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                } else {
+                    JOptionPane.showOptionDialog(null, "Ocorreu um erro na inserção, confira os dados e tente novamente.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+                }
+                    
+            } else {
+                JOptionPane.showOptionDialog(null, "CPF inválido.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+            }
+        } else {
+            JOptionPane.showOptionDialog(null, "Preencha os campos antes de submeter o formulário.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+        }
+        
+    }//GEN-LAST:event_salvarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,15 +217,15 @@ public class CadastroUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox comboTipoUsuario;
-    private javax.swing.JTextField fieldName;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField cpf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JFormattedTextField nascimento;
+    private javax.swing.JTextField nome;
+    private javax.swing.JComboBox perfil;
     private javax.swing.JButton salvarUsuario;
     // End of variables declaration//GEN-END:variables
 }

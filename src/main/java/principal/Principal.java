@@ -7,7 +7,8 @@ public class Principal {
 
     public static void main(String[] args) {
         try {
-            new ConnectionFactory();
+            ConnectionFactory cf = new ConnectionFactory();
+            cf.populate();
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
