@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table libsystem.usuarios: ~1 rows (approximately)
+-- Dumping data for table libsystem.usuarios: ~0 rows (approximately)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`, `created`, `modified`, `status`) VALUES
 	(1, 1, '03451889340', 'Carlos Filho', '123456', '1988-10-11', '2015-07-12 16:06:25', NULL, 1);
