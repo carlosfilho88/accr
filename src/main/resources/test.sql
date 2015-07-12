@@ -19,13 +19,13 @@ USE `libsystem`;
 -- Dumping structure for table libsystem.perfil
 DROP TABLE IF EXISTS `perfil`;
 CREATE TABLE IF NOT EXISTS `perfil` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
   `status` tinyint(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
--- Dumping data for table libsystem.perfil: ~0 rows (approximately)
+-- Dumping data for table libsystem.perfil: ~2 rows (approximately)
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
 INSERT INTO `perfil` (`id`, `nome`, `status`) VALUES
 	(1, 'usuario', 1),
@@ -36,17 +36,21 @@ INSERT INTO `perfil` (`id`, `nome`, `status`) VALUES
 -- Dumping structure for table libsystem.usuarios
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `cpf` varchar(100) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `perfil_id` int(10) unsigned NOT NULL DEFAULT '1',
+  `cpf` varchar(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
   `senha` varchar(12) NOT NULL DEFAULT '123456',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table libsystem.usuarios: ~0 rows (approximately)
+-- Dumping data for table libsystem.usuarios: ~1 rows (approximately)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `senha`) VALUES
-	(1, 'Carlos Filho', '03451889340', '123456');
+INSERT INTO `usuarios` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `created`, `modified`, `status`) VALUES
+	(1, 1, '03451889340', 'Carlos Filho', '123456', '2015-07-12 16:06:25', NULL, 1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
