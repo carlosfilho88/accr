@@ -127,7 +127,6 @@ public class Login extends javax.swing.JFrame {
         
         if (passwordField.getPassword().length > 0 && cpfField.getText().length() > 0) {
             if (vcpf.isValid(cpfField.getText())) {
-                new ConnectionFactory();
 		UsuarioDAO ud = new UsuarioDAO();
                 ArrayList<String> values = new ArrayList<String>();
                 List<Usuario> result = null;
