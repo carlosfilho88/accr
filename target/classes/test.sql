@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `cpf` varchar(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `senha` varchar(12) NOT NULL DEFAULT '123456',
+  `data_nascimento` date DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(2) NOT NULL DEFAULT '1',
@@ -49,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 -- Dumping data for table libsystem.usuarios: ~1 rows (approximately)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `created`, `modified`, `status`) VALUES
-	(1, 1, '03451889340', 'Carlos Filho', '123456', '2015-07-12 16:06:25', NULL, 1);
+INSERT INTO `usuarios` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`, `created`, `modified`, `status`) VALUES
+	(1, 1, '03451889340', 'Carlos Filho', '123456', '1988-10-11', '2015-07-12 16:06:25', NULL, 1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

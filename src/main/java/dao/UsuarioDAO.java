@@ -10,19 +10,24 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import conexao.ConnectionFactory;
+import entidades.Perfil;
 import entidades.Usuario;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 
 public class UsuarioDAO implements DAOInterface {
 
     private static Logger logger;
-    private static final String CREATE_QUERY = "INSERT INTO usuarios (nome, cpf) VALUES (?,?)";
-    private static final String READ_QUERY = "SELECT id, nome, cpf FROM usuarios WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE usuarios SET nome=?, cpf=? WHERE id = ?";
+    private static final String CREATE_QUERY = "INSERT INTO usuarios (perfil_id, cpf, nome, senha, data_nascimento, modified, status) VALUES (?,?,?,?,?,?,?)";
+    private static final String READ_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuarios WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE usuarios SET nome = ?, cpf = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM usuarios WHERE id = ?";
-    private static final String SELECT_ALL_QUERY = "SELECT id, nome, cpf, senha FROM usuarios";
+    private static final String SELECT_ALL_QUERY = "SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuarios";
     
     public <Usuario> int insert(Usuario usuario) {
         Connection conn = null;
@@ -212,7 +217,7 @@ public class UsuarioDAO implements DAOInterface {
         ResultSet result = null;
         try {
             conn = (Connection) ConnectionFactory.getConnection();
-            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, nome, cpf, senha FROM usuarios WHERE " + columnName + " = ?");
+            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, created, modified, status FROM usuarios WHERE " + columnName + " = ?");
             preparedStatement.setString(1, value);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
@@ -257,26 +262,37 @@ public class UsuarioDAO implements DAOInterface {
         ResultSet result = null;
         try {
             conn = (Connection) ConnectionFactory.getConnection();
-            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, nome, cpf, senha FROM usuarios WHERE " + criteria);
+            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM usuarios WHERE " + criteria);
             for (int i = 0; i < values.size(); i++) {
-                System.out.println(values.get(i));
                 preparedStatement.setString(i+1, values.get(i));
             }
             //System.out.println(preparedStatement.asSql());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             usuarios = new ArrayList<Usuario>();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
  
             while(result != null && result.next()) {
                 usuario = new Usuario();
+                Perfil perfil = new Perfil();
                 usuario.setId(result.getInt(1));
-                usuario.setNome(result.getString(2));
+                perfil.setId(result.getInt(2));
+                usuario.setPerfil(perfil);
                 usuario.setCpf(result.getString(3));
-                usuario.setSenha(result.getString(4));
+                usuario.setNome(result.getString(4));
+                usuario.setSenha(result.getString(5));
+                usuario.setDataNascimento(result.getDate(6));
+                if(result.getString(7) != null)
+                    usuario.setCreated(sdf.parse(result.getString(7)));
+                if(result.getString(8) != null)
+                    usuario.setModified(sdf.parse(result.getString(8)));
+                usuario.setStatus(result.getInt(9));
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 result.close();

@@ -8,6 +8,7 @@ package gui;
 import conexao.ConnectionFactory;
 import dao.UsuarioDAO;
 import entidades.Usuario;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -133,8 +134,20 @@ public class Login extends javax.swing.JFrame {
                 values.add(cpfField.getText().replaceAll("[\\.\\-]", ""));
                 values.add(new String(passwordField.getPassword()));
 		result = ud.findByCriteria("cpf = ? AND senha = ?", values);
+                
+                //Abre o JFrame correspondente ao perfil do usuario
                 if(result != null && result.size() > 0) {
-                    result.get(0).getCpf();
+                    System.out.println(result.get(0));
+                    switch (result.get(0).getPerfil().getId()) {
+                        case 1:
+                            //this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                            new TelaAdministrador().setVisible(true);
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            break;
+                    }
                 } else {
                     JOptionPane.showOptionDialog(null, "Usuário ou senha incorretos.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
                 }

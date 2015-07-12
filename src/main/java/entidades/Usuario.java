@@ -7,14 +7,14 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 4306499762696262279L;
     private int id;
-    private String nome;
+    private Perfil perfil;
     private String cpf;
+    private String nome;
     private String senha;
     private Date dataNascimento;
-    private int status;
     private Date created;
     private Date modified;
-    private Perfil perfil_id;
+    private int status;
 
     public int getId() {
         return id;
@@ -56,12 +56,12 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public Perfil getPerfil_id() {
-        return perfil_id;
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void setPerfil_id(Perfil perfil_id) {
-        this.perfil_id = perfil_id;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public Date getDataNascimento() {
@@ -76,12 +76,12 @@ public class Usuario implements Serializable {
         this.created = created;
     }
 
-    public void setModified() {
-        this.modified = new Date();
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
     public String toString() {
-        return this.cpf + " " + this.nome + " " + this.senha;
+        return this.id + " " +this.perfil.getId() + " " +this.cpf + " " +this.nome + " " + this.dataNascimento + " " + this.created + " " + this.modified + " " + this.status;
     }
 
 }
