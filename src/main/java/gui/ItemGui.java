@@ -16,6 +16,7 @@ public class ItemGui extends javax.swing.JFrame {
      */
     public ItemGui() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,13 +45,13 @@ public class ItemGui extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Item", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jLabel1.setText("Descrição");
+        jLabel1.setText("Descriï¿½ï¿½o");
 
         jLabel2.setText("Quantidade");
 
         jLabel3.setText("Ano");
 
-        jLabel4.setText("Edição");
+        jLabel4.setText("Ediï¿½ï¿½o");
 
         jLabel5.setText("Autor");
 

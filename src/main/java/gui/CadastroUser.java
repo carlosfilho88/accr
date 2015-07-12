@@ -16,6 +16,7 @@ public class CadastroUser extends javax.swing.JFrame {
      */
     public CadastroUser() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,7 +41,7 @@ public class CadastroUser extends javax.swing.JFrame {
 
         setTitle("LibSystem");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro do usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro do usuï¿½rio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jLabel1.setText("Nome");
 

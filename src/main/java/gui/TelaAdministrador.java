@@ -16,6 +16,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
      */
     public TelaAdministrador() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
