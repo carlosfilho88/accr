@@ -5,11 +5,14 @@
  */
 package gui;
 
-import conexao.ConnectionFactory;
 import dao.UsuarioDAO;
 import entidades.Perfil;
 import entidades.Usuario;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.ValidarCpf;
 
@@ -17,12 +20,12 @@ import util.ValidarCpf;
  *
  * @author Airon
  */
-public class CadastroUser extends javax.swing.JFrame {
+public class CadastroUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroUser
      */
-    public CadastroUser() {
+    public CadastroUsuario() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -153,21 +156,29 @@ public class CadastroUser extends javax.swing.JFrame {
 
     private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarUsuarioActionPerformed
         ValidarCpf vcpf = new ValidarCpf();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         if (nome.getText().length() > 0 && cpf.getText().length() > 0 && nascimento.getText().length() > 0) {
             if (vcpf.isValid(cpf.getText())) {
 		UsuarioDAO ud = new UsuarioDAO();
                 Usuario usuario = new Usuario();
                 Perfil p = new Perfil();
+                
                 p.setId(perfil.getSelectedIndex()+1);
                 usuario.setCpf(cpf.getText().replaceAll("[\\.\\-]", ""));
                 usuario.setNome((nome.getText()));
-                usuario.setDataNascimento(new Date(nascimento.getText()));
+                try {
+                    usuario.setDataNascimento(sdf.parse(nascimento.getText()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(CadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 usuario.setPerfil(p);
 		int i = ud.insert(usuario);
                 
                 if(i > 0) {
-                    JOptionPane.showOptionDialog(null, "Usuário cadastrado com sucesso.", "", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    JOptionPane.showOptionDialog(null, "Usuário cadastrado com sucesso.", "", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    setVisible(false);
+                    repaint();
                 } else {
                     JOptionPane.showOptionDialog(null, "Ocorreu um erro na inserção, confira os dados e tente novamente.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
                 }
@@ -198,20 +209,21 @@ public class CadastroUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroUser().setVisible(true);
+                new CadastroUsuario().setVisible(true);
             }
         });
     }

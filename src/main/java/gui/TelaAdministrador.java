@@ -5,6 +5,8 @@
  */
 package gui;
 
+import principal.Principal;
+
 /**
  *
  * @author Airon
@@ -29,41 +31,51 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuCadastros = new javax.swing.JMenu();
+        menuUsuario = new javax.swing.JMenuItem();
+        menuItem = new javax.swing.JMenuItem();
+        menuAjuda = new javax.swing.JMenu();
+        menuSobre1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Painel do Administrador");
 
-        jMenu1.setText("Cadastros");
+        menuCadastros.setText("Cadastros");
 
-        jMenuItem3.setText("Usu�rio");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        menuUsuario.setText("Usuário");
+        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                menuUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        menuCadastros.add(menuUsuario);
 
-        jMenuItem1.setText("Item");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuItem.setText("Item");
+        menuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuCadastros.add(menuItem);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuCadastros);
 
-        jMenu2.setText("Sobre");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+        menuAjuda.setText("Ajuda");
+        menuAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAjudaActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+
+        menuSobre1.setText("Sobre");
+        menuSobre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSobre1ActionPerformed(evt);
+            }
+        });
+        menuAjuda.add(menuSobre1);
+
+        jMenuBar1.add(menuAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -81,17 +93,23 @@ public class TelaAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        new ProjetoGui().setVisible(true);
-    }//GEN-LAST:event_jMenu2MouseClicked
+    private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
+        Principal.cadastroUsuario = new CadastroUsuario();
+        Principal.cadastroUsuario.setVisible(true);
+    }//GEN-LAST:event_menuUsuarioActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        new CadastroUser().setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void menuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActionPerformed
+        Principal.cadastroItem = new CadastroItem();
+        Principal.cadastroItem.setVisible(true);
+    }//GEN-LAST:event_menuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new ItemGui().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void menuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjudaActionPerformed
+        
+    }//GEN-LAST:event_menuAjudaActionPerformed
+
+    private void menuSobre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobre1ActionPerformed
+        new TelaSobre().setVisible(true);
+    }//GEN-LAST:event_menuSobre1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,10 +147,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuCadastros;
+    private javax.swing.JMenuItem menuItem;
+    private javax.swing.JMenuItem menuSobre1;
+    private javax.swing.JMenuItem menuUsuario;
     // End of variables declaration//GEN-END:variables
 }

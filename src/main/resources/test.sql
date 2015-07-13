@@ -37,18 +37,18 @@ INSERT INTO `perfil` (`id`, `nome`, `status`) VALUES
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `perfil_id` int(10) unsigned NOT NULL DEFAULT '1',
-  `cpf` varchar(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `senha` varchar(12) NOT NULL DEFAULT '123456',
+  `perfil_id` int(10) unsigned DEFAULT '1',
+  `cpf` varchar(11) DEFAULT NULL,
+  `nome` varchar(50) DEFAULT NULL,
+  `senha` varchar(12) DEFAULT '123456',
   `data_nascimento` date DEFAULT NULL,
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified` datetime DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint(2) NOT NULL DEFAULT '1',
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(2) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table libsystem.usuario: ~0 rows (approximately)
+-- Dumping data for table libsystem.usuario: ~1 rows (approximately)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`, `created`, `modified`, `status`) VALUES
 	(1, 1, '03451889340', 'Carlos Filho', '123456', '1988-10-11', '2015-07-12 16:06:25', NULL, 1);

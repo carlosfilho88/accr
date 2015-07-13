@@ -1,14 +1,22 @@
 package principal;
 
 import conexao.ConnectionFactory;
-import gui.Login;
+import gui.CadastroItem;
+import gui.CadastroUsuario;
+import gui.TelaAdministrador;
+import gui.TelaLogin;
 
 public class Principal {
+    
+    public static CadastroUsuario cadastroUsuario;
+    public static CadastroItem cadastroItem;
+    public static TelaLogin telaLogin;
+    public static TelaAdministrador telaAdministrador;
 
     public static void main(String[] args) {
         try {
-            ConnectionFactory cf = new ConnectionFactory();
-            cf.populate();
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.populate();
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -16,18 +24,19 @@ public class Principal {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                telaLogin = new TelaLogin();
+                telaLogin.setVisible(true);
             }
         });
     }

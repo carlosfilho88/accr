@@ -9,12 +9,12 @@ package gui;
  *
  * @author Airon
  */
-public class ItemGui extends javax.swing.JFrame {
+public class CadastroItem extends javax.swing.JFrame {
 
     /**
      * Creates new form ItemGui
      */
-    public ItemGui() {
+    public CadastroItem() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -45,13 +45,13 @@ public class ItemGui extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Item", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jLabel1.setText("Descri��o");
+        jLabel1.setText("Descrição");
 
         jLabel2.setText("Quantidade");
 
         jLabel3.setText("Ano");
 
-        jLabel4.setText("Edi��o");
+        jLabel4.setText("Edição");
 
         jLabel5.setText("Autor");
 
@@ -148,20 +148,21 @@ public class ItemGui extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ItemGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ItemGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ItemGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ItemGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ItemGui().setVisible(true);
+                new CadastroItem().setVisible(true);
             }
         });
     }

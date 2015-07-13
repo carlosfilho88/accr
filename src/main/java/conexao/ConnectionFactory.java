@@ -12,8 +12,8 @@ import util.ReadConfig;
 
 public class ConnectionFactory {
 
-    private static Connection connection;
     private ClassLoader classLoader;
+    private static Connection connection = null;
     private static DriverConnection driver = null;
     
     public ConnectionFactory() {
@@ -26,11 +26,9 @@ public class ConnectionFactory {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
-    public static Connection getConnection() {
-        if (connection == null)
+    public static Connection getConnection() throws SQLException {
             new ConnectionFactory();
         return connection;
     }
