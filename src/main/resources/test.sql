@@ -67,3 +67,15 @@ CREATE TABLE IF NOT EXISTS `libsystem`.`item` (
   `autor` VARCHAR(255) NULL,
   PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `movimentacoes`;
+CREATE TABLE IF NOT EXISTS `libsystem`.`movimentacoes` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `item_id` INT NOT NULL,
+  `tipo_movimentacao` CHAR(1) NOT NULL,
+  `created` DATETIME NOT NULL,
+  `modified` DATETIME NULL,
+  `user_id_modified` INT UNSIGNED NOT NULL,
+  `status` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
