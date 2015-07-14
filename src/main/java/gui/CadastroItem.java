@@ -151,7 +151,7 @@ public class CadastroItem extends javax.swing.JFrame {
             item.setQuantidade((int) quantidade.getValue());
             int i = dao.insert(item);
             if (i > 0) {
-                JOptionPane.showOptionDialog(null, "Usuário cadastrado com sucesso.", "", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                JOptionPane.showOptionDialog(null, "Item cadastrado com sucesso.", "", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 setVisible(false);
                 repaint();
             } else {
