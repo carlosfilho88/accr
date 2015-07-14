@@ -79,6 +79,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jMenuBar1.add(menuAjuda);
 
         jMenu1.setText("Sair");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu1MousePressed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -114,6 +119,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void menuSobre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobre1ActionPerformed
         new TelaSobre().setVisible(true);
     }//GEN-LAST:event_menuSobre1ActionPerformed
+
+    private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
+        System.exit(0);
+    }//GEN-LAST:event_jMenu1MousePressed
 
     /**
      * @param args the command line arguments
