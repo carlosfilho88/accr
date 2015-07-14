@@ -36,6 +36,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         menuItem = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         menuSobre1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Painel do Administrador");
@@ -76,6 +77,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         menuAjuda.add(menuSobre1);
 
         jMenuBar1.add(menuAjuda);
+
+        jMenu1.setText("Sair");
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -147,6 +151,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuCadastros;

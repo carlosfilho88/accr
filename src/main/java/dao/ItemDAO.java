@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class ItemDAO implements DAOInterface{
 
     private static Logger logger;
-    private static final String CREATE_QUERY = "INSERT INTO item (descricao, quantidade, ano, edicao, autor) VALUES (?,?,?,?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO item (descricao, quantidade) VALUES (?,?)";
     private static final String READ_QUERY = "SELECT id, descricao, quantidade, ano, edicao, autor, created, modified, status FROM item WHERE id = ?";
     private static final String UPDATE_QUERY = "UPDATE item SET descricao = ?, quantidade = ?, ano = ?, edicao = ?, autor = ?, modified = ?, status = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM item WHERE id = ?";
@@ -31,7 +31,7 @@ public class ItemDAO implements DAOInterface{
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             conn = (Connection) ConnectionFactory.getConnection();
             preparedStatement = (PreparedStatement) conn.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, ((entidades.Item) item).getDescricao());

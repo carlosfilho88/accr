@@ -5,6 +5,12 @@
  */
 package gui;
 
+import dao.ItemDAO;
+import entidades.Item;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Airon
@@ -38,8 +44,8 @@ public class CadastroItem extends javax.swing.JFrame {
         fieldEdicao = new javax.swing.JTextField();
         fieldAutor = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        quantidade = new javax.swing.JSpinner();
+        ano = new javax.swing.JSpinner();
 
         setTitle("LibSystem - Cadastro de Item");
 
@@ -56,6 +62,11 @@ public class CadastroItem extends javax.swing.JFrame {
         jLabel5.setText("Autor");
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -74,8 +85,8 @@ public class CadastroItem extends javax.swing.JFrame {
                         .addComponent(fieldAutor)
                         .addComponent(fieldEdicao)
                         .addComponent(fieldDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                        .addComponent(jSpinner1)
-                        .addComponent(jSpinner2))
+                        .addComponent(quantidade)
+                        .addComponent(ano))
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
@@ -89,11 +100,11 @@ public class CadastroItem extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -130,6 +141,26 @@ public class CadastroItem extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        if (fieldDescricao.getText().length() > 0 && ano.getValue() != null) {
+            ItemDAO dao = new ItemDAO();
+            Item item = new Item();
+            item.setDescricao(fieldDescricao.getText());
+            item.setQuantidade((int) quantidade.getValue());
+            int i = dao.insert(item);
+            if (i > 0) {
+                JOptionPane.showOptionDialog(null, "Usuário cadastrado com sucesso.", "", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                setVisible(false);
+                repaint();
+            } else {
+                JOptionPane.showOptionDialog(null, "Ocorreu um erro na inserção, confira os dados e tente novamente.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+            }
+        } else {
+            JOptionPane.showOptionDialog(null, "Preencha os campos antes de submeter o formulário.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,6 +199,7 @@ public class CadastroItem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner ano;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField fieldAutor;
     private javax.swing.JTextField fieldDescricao;
@@ -178,7 +210,6 @@ public class CadastroItem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner quantidade;
     // End of variables declaration//GEN-END:variables
 }
