@@ -6,6 +6,7 @@ import gui.CadastroUsuario;
 import gui.TelaAdministrador;
 import gui.TelaAluno;
 import gui.TelaLogin;
+import gui.TelaMovimentacao;
 
 public class Principal {
     
@@ -14,6 +15,7 @@ public class Principal {
     public static TelaLogin telaLogin;
     public static TelaAluno telaAluno;
     public static TelaAdministrador telaAdministrador;
+    public static TelaMovimentacao telaMovimentacoes;
 
     public static void main(String[] args) {
         try {

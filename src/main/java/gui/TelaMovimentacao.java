@@ -5,6 +5,12 @@
  */
 package gui;
 
+import dao.MovimentacaoDAO;
+import entidades.Movimentacao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cf
@@ -16,6 +22,7 @@ public class TelaMovimentacao extends javax.swing.JFrame {
      */
     public TelaMovimentacao() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -33,8 +40,8 @@ public class TelaMovimentacao extends javax.swing.JFrame {
         buscaTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaMov = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        devolucaoCheckbox = new javax.swing.JCheckBox();
+        emprestimoCheckbox = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,9 +75,9 @@ public class TelaMovimentacao extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaMov);
 
-        jCheckBox1.setText("Devolução");
+        devolucaoCheckbox.setText("Devolução");
 
-        jCheckBox2.setText("Empréstimo");
+        emprestimoCheckbox.setText("Empréstimo");
 
         jLabel1.setText("Filtrar por:");
 
@@ -89,9 +96,9 @@ public class TelaMovimentacao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox2)
+                                .addComponent(emprestimoCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1)
+                                .addComponent(devolucaoCheckbox)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(buscaTextField)))))
         );
@@ -104,8 +111,8 @@ public class TelaMovimentacao extends javax.swing.JFrame {
                     .addComponent(buscaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
+                    .addComponent(devolucaoCheckbox)
+                    .addComponent(emprestimoCheckbox)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,8 +140,26 @@ public class TelaMovimentacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaTextFieldActionPerformed
-        if(buscaTextField.getText().length() > 3) {
-            buscaTextField.getText();
+        if (buscaTextField.getText().length() > 1) {
+            ArrayList<String> values = new ArrayList<String>();
+            MovimentacaoDAO md = new MovimentacaoDAO();
+            
+            String criteria = "movimentacoes.tipo_movimentacao = ?";
+            if(emprestimoCheckbox.isEnabled())
+                values.add("E");
+            if(devolucaoCheckbox.isEnabled())
+                values.add("D");
+            if(emprestimoCheckbox.isEnabled() && devolucaoCheckbox.isEnabled())
+                criteria = "movimentacoes.tipo_movimentacao = ? OR movimentacoes.tipo_movimentacao = ?";
+            criteria += " AND item.descricao like '%?%'";
+            values.add(buscaTextField.getText());
+            List<Movimentacao> result = md.findByCriteria(criteria, values);
+
+            if (result != null && result.size() > 0) {
+                System.out.println(result);
+            } else {
+                JOptionPane.showOptionDialog(null, "Nenhum resultado encontrado!", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+            }
         }
     }//GEN-LAST:event_buscaTextFieldActionPerformed
 
@@ -176,8 +201,8 @@ public class TelaMovimentacao extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField buscaTextField;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox devolucaoCheckbox;
+    private javax.swing.JCheckBox emprestimoCheckbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

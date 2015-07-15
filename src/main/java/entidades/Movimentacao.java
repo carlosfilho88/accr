@@ -12,11 +12,12 @@ import java.util.Date;
  *
  * @author Airon
  */
-public class Movimentacao implements Serializable{
-    
+public class Movimentacao implements Serializable {
+
     private int id;
     private Item item;
     private Usuario usuario;
+    private String tipoMovimentacao;
     private int status;
     private Date created;
     private Date modified;
@@ -68,9 +69,17 @@ public class Movimentacao implements Serializable{
     public void setModified(Date modified) {
         this.modified = modified;
     }
-    
-    public String toString(){
-        return this.id + "" + this.item.getId() + this.usuario.getId() + "" + this.status + "" + this.created + "" + this.modified;
+
+    public String getTipoMovimentacao() {
+        return tipoMovimentacao;
     }
-    
+
+    public void setTipoMovimentacao(String tipoMovimentacao) {
+        this.tipoMovimentacao = tipoMovimentacao;
+    }
+
+    public String toString() {
+        return this.id + " " + this.item.getId() + " " + this.usuario.getId() + " " + this.tipoMovimentacao + " " + this.status + " " + this.created + " " + this.modified;
+    }
+
 }

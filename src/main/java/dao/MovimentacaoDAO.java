@@ -9,6 +9,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import conexao.ConnectionFactory;
+import entidades.Item;
 import entidades.Movimentacao;
 import entidades.Perfil;
 import entidades.Usuario;
@@ -55,15 +56,26 @@ public class MovimentacaoDAO implements DAOInterface {
     public List<Movimentacao> findByCriteria(String criteria, ArrayList<String> values) {
         List<Movimentacao> movimentacoes = null;
         Movimentacao movimentacao = null;
+        Usuario usuario = null;
+        Item item = null;
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
+        String baseSql = "SELECT item.descricao, movimentacoes.tipo_movimentacao, movimentacoes.modified, usuario.nome "
+                                + "FROM movimentacoes "
+                                + "INNER JOIN item ON item.id = movimentacoes.item_id"
+                                + "INNER JOIN usuario ON usuario.id = movimentacoes.user_id_modified";
         try {
-            conn = (Connection) ConnectionFactory.getConnection();
-            preparedStatement = (PreparedStatement) conn.prepareStatement("SELECT id, perfil_id, cpf, nome, senha, data_nascimento, created, modified, status FROM movimentacao WHERE " + criteria);
+            if(criteria != null && !criteria.isEmpty())
+                baseSql += " WHERE " + criteria;
             for (int i = 0; i < values.size(); i++) {
                 preparedStatement.setString(i+1, values.get(i));
             }
+            
+            conn = (Connection) ConnectionFactory.getConnection();
+            preparedStatement = (PreparedStatement) conn.prepareStatement(baseSql);
+            
+            
             //System.out.println(preparedStatement.asSql());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
@@ -72,9 +84,14 @@ public class MovimentacaoDAO implements DAOInterface {
  
             while(result != null && result.next()) {
                 movimentacao = new Movimentacao();
-                Perfil perfil = new Perfil();
-                movimentacao.setId(result.getInt(1));
-                perfil.setId(result.getInt(2));
+                item = new Item();
+                item.setDescricao(result.getString(1));
+                movimentacao.setItem(item);
+                movimentacao.setTipoMovimentacao(result.getString(2));
+                movimentacao.setModified(result.getDate(3));
+                usuario = new Usuario();
+                usuario.setNome(result.getString(4));
+                movimentacao.setUsuario(usuario);
                 movimentacoes.add(movimentacao);
             }
         } catch (SQLException e) {

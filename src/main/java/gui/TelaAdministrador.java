@@ -34,6 +34,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         menuCadastros = new javax.swing.JMenu();
         menuUsuario = new javax.swing.JMenuItem();
         menuItem = new javax.swing.JMenuItem();
+        menuMovimentacoes = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         menuSobre1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -59,6 +60,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
         });
         menuCadastros.add(menuItem);
 
+        menuMovimentacoes.setText("Movimentações");
+        menuMovimentacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMovimentacoesActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuMovimentacoes);
+
         jMenuBar1.add(menuCadastros);
 
         menuAjuda.setText("Ajuda");
@@ -79,9 +88,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jMenuBar1.add(menuAjuda);
 
         jMenu1.setText("Sair");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenu1MousePressed(evt);
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
             }
         });
         jMenuBar1.add(jMenu1);
@@ -120,9 +129,14 @@ public class TelaAdministrador extends javax.swing.JFrame {
         new TelaSobre().setVisible(true);
     }//GEN-LAST:event_menuSobre1ActionPerformed
 
-    private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
+    private void menuMovimentacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMovimentacoesActionPerformed
+        Principal.telaMovimentacoes = new TelaMovimentacao();
+        Principal.telaMovimentacoes.setVisible(true);
+    }//GEN-LAST:event_menuMovimentacoesActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenu1MousePressed
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +179,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuCadastros;
     private javax.swing.JMenuItem menuItem;
+    private javax.swing.JMenuItem menuMovimentacoes;
     private javax.swing.JMenuItem menuSobre1;
     private javax.swing.JMenuItem menuUsuario;
     // End of variables declaration//GEN-END:variables
