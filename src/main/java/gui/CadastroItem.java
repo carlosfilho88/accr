@@ -161,10 +161,10 @@ public class CadastroItem extends javax.swing.JFrame {
                 setVisible(false);
                 repaint();
             } else {
-                JOptionPane.showOptionDialog(null, "Ocorreu um erro na inser√ß√£o, confira os dados e tente novamente.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+                JOptionPane.showOptionDialog(null, "Ocorreu um erro na inserÁ„o, confira os dados e tente novamente.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
             }
         } else {
-            JOptionPane.showOptionDialog(null, "Preencha os campos antes de submeter o formul√°rio.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+            JOptionPane.showOptionDialog(null, "Preencha os campos antes de submeter o formul·rio.", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
