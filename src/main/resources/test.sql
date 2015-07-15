@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `libsystem`.`item` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(255) NOT NULL,
   `quantidade` INT NOT NULL,
-  `ano` DATE NULL,
+  `ano` INT NULL,
   `edicao` INT UNSIGNED NULL,
   `autor` VARCHAR(255) NULL,
   PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
