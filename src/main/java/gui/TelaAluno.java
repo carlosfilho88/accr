@@ -38,7 +38,7 @@ public class TelaAluno extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LibSystem - Portal Aluno");
 
-        jMenu1.setText("File");
+        jMenu1.setText("Consultar");
 
         itemAcervo.setText("Acervo");
         itemAcervo.addActionListener(new java.awt.event.ActionListener() {
