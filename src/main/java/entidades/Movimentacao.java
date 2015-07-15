@@ -15,8 +15,8 @@ import java.util.Date;
 public class Movimentacao implements Serializable{
     
     private int id;
-    private int itemId;
-    private int userId;
+    private Item item;
+    private Usuario usuario;
     private int status;
     private Date created;
     private Date modified;
@@ -29,20 +29,20 @@ public class Movimentacao implements Serializable{
         this.id = id;
     }
 
-    public int getItemId() {
-        return itemId;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public int getUserId() {
-        return userId;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public int getStatus() {
@@ -70,7 +70,7 @@ public class Movimentacao implements Serializable{
     }
     
     public String toString(){
-        return this.id + "" + this.itemId + this.userId + "" + this.status + "" + this.created + "" + this.modified;
+        return this.id + "" + this.item.getId() + this.usuario.getId() + "" + this.status + "" + this.created + "" + this.modified;
     }
     
 }
