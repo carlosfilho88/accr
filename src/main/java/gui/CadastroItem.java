@@ -7,8 +7,7 @@ package gui;
 
 import dao.ItemDAO;
 import entidades.Item;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -148,7 +147,14 @@ public class CadastroItem extends javax.swing.JFrame {
             ItemDAO dao = new ItemDAO();
             Item item = new Item();
             item.setDescricao(fieldDescricao.getText());
-            item.setQuantidade((int) quantidade.getValue());
+            Integer qtd = (Integer) quantidade.getValue();
+            item.setQuantidade(qtd);
+            Integer anoItem = (Integer) ano.getValue();
+            item.setAno(anoItem);
+            item.setEdicao(Integer.parseInt(fieldEdicao.getText()));
+            item.setAutor(fieldAutor.getText());
+            item.setCreated(new Date());
+            item.setStatus(1);
             int i = dao.insert(item);
             if (i > 0) {
                 JOptionPane.showOptionDialog(null, "Item cadastrado com sucesso.", "", JOptionPane.PLAIN_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, null, null);
