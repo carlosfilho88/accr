@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class ItemDAO implements DAOInterface{
 
     private static Logger logger;
-    private static final String CREATE_QUERY = "INSERT INTO item (descricao, quantidade) VALUES (?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO item (descricao, quantidade, ano, edicao, autor) VALUES (?,?,?,?,?)";
     private static final String READ_QUERY = "SELECT id, descricao, quantidade, ano, edicao, autor, created, modified, status FROM item WHERE id = ?";
     private static final String UPDATE_QUERY = "UPDATE item SET descricao = ?, quantidade = ?, ano = ?, edicao = ?, autor = ?, modified = ?, status = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM item WHERE id = ?";
@@ -36,6 +36,9 @@ public class ItemDAO implements DAOInterface{
             preparedStatement = (PreparedStatement) conn.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, ((entidades.Item) item).getDescricao());
             preparedStatement.setInt(2, ((entidades.Item) item).getQuantidade());
+            preparedStatement.setInt(3, ((entidades.Item) item).getAno());
+            preparedStatement.setInt(4, ((entidades.Item) item).getEdicao());
+            preparedStatement.setString(5, ((entidades.Item) item).getAutor());
             preparedStatement.executeUpdate();
             result = preparedStatement.getGeneratedKeys();
  
