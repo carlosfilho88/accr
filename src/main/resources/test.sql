@@ -51,7 +51,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Dumping data for table libsystem.usuario: ~1 rows (approximately)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`, `created`, `modified`, `status`) VALUES
-	(1, 1, '03451889340', 'Carlos Filho', '123456', '1988-10-11', '2015-07-12 16:06:25', NULL, 1);
+	(1, 2, '03451889340', 'Carlos Filho', '123456', '1988-10-11', '2015-07-12 16:06:25', NULL, 1);
+INSERT INTO `usuario` (`id`, `perfil_id`, `cpf`, `nome`, `senha`, `data_nascimento`) VALUES
+	(2, 1, '02647064393', 'Airon Lima', '123456', STR_TO_DATE('18/04/1988', '%d/%m/%Y'));
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
