@@ -140,10 +140,13 @@ public class TelaLogin extends javax.swing.JFrame {
                         case 1:
                             //this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
                             setVisible(false);
-                            Principal.telaAdministrador = new TelaAdministrador();
-                            Principal.telaAdministrador.setVisible(true);
+                            Principal.telaAluno = new TelaAluno();
+                            Principal.telaAluno.setVisible(true);
                             break;
                         case 2:
+                            setVisible(false);
+                            Principal.telaAdministrador = new TelaAdministrador();
+                            Principal.telaAdministrador.setVisible(true);
                             break;
                         default:
                             break;

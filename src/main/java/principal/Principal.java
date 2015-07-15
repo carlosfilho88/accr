@@ -4,6 +4,7 @@ import conexao.ConnectionFactory;
 import gui.CadastroItem;
 import gui.CadastroUsuario;
 import gui.TelaAdministrador;
+import gui.TelaAluno;
 import gui.TelaLogin;
 
 public class Principal {
@@ -11,6 +12,7 @@ public class Principal {
     public static CadastroUsuario cadastroUsuario;
     public static CadastroItem cadastroItem;
     public static TelaLogin telaLogin;
+    public static TelaAluno telaAluno;
     public static TelaAdministrador telaAdministrador;
 
     public static void main(String[] args) {
