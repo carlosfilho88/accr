@@ -61,36 +61,45 @@ public class MovimentacaoDAO implements DAOInterface {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
-        String baseSql = "SELECT item.descricao, movimentacoes.tipo_movimentacao, movimentacoes.modified, usuario.nome "
-                                + "FROM movimentacoes "
-                                + "INNER JOIN item ON item.id = movimentacoes.item_id"
-                                + "INNER JOIN usuario ON usuario.id = movimentacoes.user_id_modified";
+        String baseSql = "SELECT item.descricao, movimentacoes.tipo_movimentacao, movimentacoes.created, movimentacoes.modified, usuario.nome "
+                                + "FROM movimentacoes"
+                                + " INNER JOIN item ON item.id = movimentacoes.item_id"
+                                + " INNER JOIN usuario ON usuario.id = movimentacoes.user_id_modified";
         try {
-            if(criteria != null && !criteria.isEmpty())
-                baseSql += " WHERE " + criteria;
-            for (int i = 0; i < values.size(); i++) {
-                preparedStatement.setString(i+1, values.get(i));
-            }
-            
             conn = (Connection) ConnectionFactory.getConnection();
-            preparedStatement = (PreparedStatement) conn.prepareStatement(baseSql);
             
+            if(criteria != null && !criteria.isEmpty()) {
+                baseSql += " WHERE " + criteria;
+                preparedStatement = (PreparedStatement) conn.prepareStatement(baseSql);
+                for (int i = 0; i < values.size(); i++) {
+                    if (i == values.size())
+                        preparedStatement.setString(i+1, "%" + values.get(i) + "%");
+                    else
+                        preparedStatement.setString(i+1, values.get(i));
+                }
+            } else
+                preparedStatement = (PreparedStatement) conn.prepareStatement(baseSql);
             
-            //System.out.println(preparedStatement.asSql());
+            System.out.println(preparedStatement.asSql());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             movimentacoes = new ArrayList<Movimentacao>();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
  
             while(result != null && result.next()) {
+                System.out.println(result.getString(1) + " " + result.getString(2) + " ");
+                
                 movimentacao = new Movimentacao();
                 item = new Item();
                 item.setDescricao(result.getString(1));
                 movimentacao.setItem(item);
                 movimentacao.setTipoMovimentacao(result.getString(2));
-                movimentacao.setModified(result.getDate(3));
+                if(result.getString(3) != null)
+                    movimentacao.setCreated(result.getDate(3));
+                if(result.getString(4) != null)
+                    movimentacao.setModified(result.getDate(4));
                 usuario = new Usuario();
-                usuario.setNome(result.getString(4));
+                usuario.setNome(result.getString(5));
                 movimentacao.setUsuario(usuario);
                 movimentacoes.add(movimentacao);
             }

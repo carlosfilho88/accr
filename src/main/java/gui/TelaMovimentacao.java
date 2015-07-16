@@ -5,11 +5,13 @@
  */
 package gui;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import dao.MovimentacaoDAO;
 import entidades.Movimentacao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -144,19 +146,33 @@ public class TelaMovimentacao extends javax.swing.JFrame {
             ArrayList<String> values = new ArrayList<String>();
             MovimentacaoDAO md = new MovimentacaoDAO();
             
-            String criteria = "movimentacoes.tipo_movimentacao = ?";
-            if(emprestimoCheckbox.isEnabled())
+            String criteria = "";
+            if(emprestimoCheckbox.isSelected() && !devolucaoCheckbox.isSelected()) {
+                criteria = "movimentacoes.tipo_movimentacao = ?";
                 values.add("E");
-            if(devolucaoCheckbox.isEnabled())
+            }
+                
+            if(devolucaoCheckbox.isSelected() && !emprestimoCheckbox.isSelected()) {
                 values.add("D");
-            if(emprestimoCheckbox.isEnabled() && devolucaoCheckbox.isEnabled())
+                criteria = "movimentacoes.tipo_movimentacao = ?";
+            }
+                
+            if((emprestimoCheckbox.isSelected() && devolucaoCheckbox.isSelected()) || (!emprestimoCheckbox.isSelected() && !devolucaoCheckbox.isSelected()) ){
+                values.add("D");values.add("E");
                 criteria = "movimentacoes.tipo_movimentacao = ? OR movimentacoes.tipo_movimentacao = ?";
-            criteria += " AND item.descricao like '%?%'";
+            }
+                
+            criteria += " AND item.descricao like ?";
             values.add(buscaTextField.getText());
+            
             List<Movimentacao> result = md.findByCriteria(criteria, values);
 
             if (result != null && result.size() > 0) {
-                System.out.println(result);
+                DefaultTableModel model = (DefaultTableModel) tabelaMov.getModel();
+                model.setRowCount(0);
+                for (int i = 0; i < result.size(); i++) {
+                    model.addRow(new Object[]{result.get(i).getItem().getDescricao(), result.get(i).getTipoMovimentacao(), result.get(i).getCreated(), result.get(i).getUsuario().getNome()});
+                }
             } else {
                 JOptionPane.showOptionDialog(null, "Nenhum resultado encontrado!", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
             }

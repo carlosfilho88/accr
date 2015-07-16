@@ -79,7 +79,8 @@ public class Movimentacao implements Serializable {
     }
 
     public String toString() {
-        return this.id + " " + this.item.getId() + " " + this.usuario.getId() + " " + this.tipoMovimentacao + " " + this.status + " " + this.created + " " + this.modified;
+        return this.item.getDescricao() + " " + this.usuario.getNome() + " " + this.tipoMovimentacao + " " + this.created;
+        //return this.id + " " + this.item.getId() + " " + this.usuario.getId() + " " + this.tipoMovimentacao + " " + this.status + " " + this.created + " " + this.modified;
     }
 
 }
