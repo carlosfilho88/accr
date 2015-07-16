@@ -69,6 +69,9 @@ CREATE TABLE IF NOT EXISTS `libsystem`.`item` (
   `autor` VARCHAR(255) NULL,
   PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+INSERT INTO `item` (`id`, `descricao`, `quantidade`, `ano`, `edicao`, `autor`) VALUES
+	(1, 'Java Como Programar', 10, 2010, 8, 'Paul Deitel');
+
 DROP TABLE IF EXISTS `movimentacoes`;
 CREATE TABLE IF NOT EXISTS `libsystem`.`movimentacoes` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
