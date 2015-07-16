@@ -80,7 +80,6 @@ public class MovimentacaoDAO implements DAOInterface {
             } else
                 preparedStatement = (PreparedStatement) conn.prepareStatement(baseSql);
             
-            System.out.println(preparedStatement.asSql());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             movimentacoes = new ArrayList<Movimentacao>();

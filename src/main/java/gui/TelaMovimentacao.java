@@ -8,6 +8,7 @@ package gui;
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import dao.MovimentacaoDAO;
 import entidades.Movimentacao;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -64,11 +65,11 @@ public class TelaMovimentacao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item", "Tipo de movimentação", "Última modificação em", "Último usuário"
+                "Item", "Tipo de movimentação", "Criado em", "Última modificação em", "Último usuário"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -166,12 +167,22 @@ public class TelaMovimentacao extends javax.swing.JFrame {
             values.add(buscaTextField.getText());
             
             List<Movimentacao> result = md.findByCriteria(criteria, values);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String created_at = "";
+            String modified_at = "";
+            String username = "";
 
             if (result != null && result.size() > 0) {
                 DefaultTableModel model = (DefaultTableModel) tabelaMov.getModel();
                 model.setRowCount(0);
                 for (int i = 0; i < result.size(); i++) {
-                    model.addRow(new Object[]{result.get(i).getItem().getDescricao(), result.get(i).getTipoMovimentacao(), result.get(i).getCreated(), result.get(i).getUsuario().getNome()});
+                    if(result.get(i).getCreated() != null)
+                        created_at = sdf.format(result.get(i).getCreated());
+                    if(result.get(i).getModified() != null)
+                        modified_at = sdf.format(result.get(i).getModified());
+                    if(result.get(i).getUsuario().getNome() != null)
+                        username = result.get(i).getUsuario().getNome();
+                    model.addRow(new Object[]{result.get(i).getItem().getDescricao(), result.get(i).getTipoMovimentacao(), created_at, modified_at, username});
                 }
             } else {
                 JOptionPane.showOptionDialog(null, "Nenhum resultado encontrado!", "Erro", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
